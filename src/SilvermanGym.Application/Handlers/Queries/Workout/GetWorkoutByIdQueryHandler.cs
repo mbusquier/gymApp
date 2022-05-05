@@ -32,7 +32,8 @@ namespace SilvermanGym.Application.Handlers.Queries
             var workout = new WorkoutDto(
                 workEntity.Id,
                 workEntity.Name,
-                workEntity.WorkoutDate
+                workEntity.WorkoutDate,
+                workEntity.UserId
             );
 
             return workout;

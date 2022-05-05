@@ -16,6 +16,8 @@ namespace SilvermanGym.Domain.Entities
         public ExerciseType ExerciseType { get; set; }
         public string Description { get; set; }
 
+        //Navigational Properties
+        public ICollection<Workout> Workouts { get; set; }
         
         public Exercise(Guid Id, string Name, ExerciseEquipment exerciseEquipment, 
                         ExerciseType exerciseType, string Description)

@@ -39,7 +39,8 @@ namespace SilvermanGym.Application.Handlers.Queries
                     (
                         wkr.Id,
                         wkr.Name,
-                        wkr.WorkoutDate
+                        wkr.WorkoutDate,
+                        wkr.UserId
                     ));
                     return workouts;
                 }      

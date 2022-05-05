@@ -8,9 +8,9 @@ using SilvermanGym.Domain.Entities;
 
 namespace SilvermanGym.Infraestructure.Persistence.EntityConfigurations
 {
-    public class ExerciseWorkoutMapConfiguration : IEntityTypeConfiguration<ExerciseWorkoutMap>
+    public class WorkoutExerciseMapConfiguration : IEntityTypeConfiguration<WorkoutExercisesMap>
     {
-        public void Configure(EntityTypeBuilder<ExerciseWorkoutMap> builder)
+        public void Configure(EntityTypeBuilder<WorkoutExercisesMap> builder)
         {
             builder.ToTable("WORKOUT_EXERCISES");
 

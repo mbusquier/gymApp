@@ -22,7 +22,7 @@ namespace SilvermanGym.Infraestructure.Persistence.Repositories
         {
             return context.Workouts
                 .AsNoTracking()
-                .Where(wrk => wrk.User.Id == Id)
+                .Where(wrk => wrk.UserId == Id)
                 .ToListAsync(ct);
         }
 

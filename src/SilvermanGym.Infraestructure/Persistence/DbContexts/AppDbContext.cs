@@ -18,6 +18,8 @@ namespace SilvermanGym.Infraestructure.Persistence.DbContexts
         public DbSet<User> Users {get; set;}
         public DbSet<Workout> Workouts { get; set; }
 
+        public DbSet<WorkoutExercisesMap> WorkoutExercises { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.HasDefaultSchema("public");
