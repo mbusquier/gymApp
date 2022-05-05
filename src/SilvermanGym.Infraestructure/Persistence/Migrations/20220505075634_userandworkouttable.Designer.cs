@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using SilvermanGym.Infraestructure.Persistence.DbContexts;
@@ -11,9 +12,10 @@ using SilvermanGym.Infraestructure.Persistence.DbContexts;
 namespace SilvermanGym.Infraestructure.Persistence.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220505075634_userandworkouttable")]
+    partial class userandworkouttable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -44,21 +46,6 @@ namespace SilvermanGym.Infraestructure.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("EXERCISES", "public");
-                });
-
-            modelBuilder.Entity("SilvermanGym.Domain.Entities.ExerciseWorkoutMap", b =>
-                {
-                    b.Property<Guid>("ExerciseId")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("WorkoutId")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("ExerciseId", "WorkoutId");
-
-                    b.HasIndex("WorkoutId");
-
-                    b.ToTable("WORKOUT_EXERCISES", "public");
                 });
 
             modelBuilder.Entity("SilvermanGym.Domain.Entities.User", b =>
@@ -109,25 +96,6 @@ namespace SilvermanGym.Infraestructure.Persistence.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("WORKOUTS", "public");
-                });
-
-            modelBuilder.Entity("SilvermanGym.Domain.Entities.ExerciseWorkoutMap", b =>
-                {
-                    b.HasOne("SilvermanGym.Domain.Entities.Exercise", "Exercise")
-                        .WithMany()
-                        .HasForeignKey("ExerciseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("SilvermanGym.Domain.Entities.Workout", "Workout")
-                        .WithMany()
-                        .HasForeignKey("WorkoutId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Exercise");
-
-                    b.Navigation("Workout");
                 });
 
             modelBuilder.Entity("SilvermanGym.Domain.Entities.Workout", b =>

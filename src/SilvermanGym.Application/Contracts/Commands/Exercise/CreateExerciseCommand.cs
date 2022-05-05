@@ -6,8 +6,8 @@ using FluentValidation;
 using SilvermanGym.Domain.Enum;
 using MediatR;
 
-namespace SilvermanGym.Application.Contracts.Commands
-{
+namespace SilvermanGym.Application.Contracts.Commands;
+
     public record CreateExerciseCommand(Guid Id, string Name, ExerciseEquipment ExerciseEquipment, 
     ExerciseType ExerciseType, string Description);
 
@@ -34,4 +34,3 @@ namespace SilvermanGym.Application.Contracts.Commands
                 .NotEmpty();
         }
     }
-}

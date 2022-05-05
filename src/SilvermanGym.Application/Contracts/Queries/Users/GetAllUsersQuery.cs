@@ -6,4 +6,4 @@ using MediatR;
 using SilvermanGym.Application.Contracts.DTOs;
 
 namespace SilvermanGym.Application.Contracts.Queries;
-    public record GetAllExercisesQuery() : IRequest<IEnumerable<ExerciseDto>>;
+    public record GetAllUsersQuery() : IRequest<IEnumerable<UserDto>>; 

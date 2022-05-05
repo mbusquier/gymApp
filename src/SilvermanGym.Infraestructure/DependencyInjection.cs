@@ -7,6 +7,8 @@ using SilvermanGym.Infraestructure.Persistence.DbContexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using SilvermanGym.Infraestructure.Persistence.Repositories;
+using SilvermanGym.Application.Interfaces;
 
 namespace SilvermanGym.Infraestructure
 {
@@ -18,6 +20,10 @@ namespace SilvermanGym.Infraestructure
                 config.GetConnectionString("PG_CONN_STR"),
                 b => b.MigrationsAssembly(Assembly.GetExecutingAssembly().FullName)
             ));
+
+            services.AddScoped<IExerciseRepository, ExerciseRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IWorkoutRepository, WorkoutRepository>();
 
             return services;
         }

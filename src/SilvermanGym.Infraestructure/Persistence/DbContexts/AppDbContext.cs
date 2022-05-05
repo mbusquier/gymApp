@@ -15,6 +15,8 @@ namespace SilvermanGym.Infraestructure.Persistence.DbContexts
         // Add more entities here
 
         public DbSet<Exercise> Exercises { get; set; }
+        public DbSet<User> Users {get; set;}
+        public DbSet<Workout> Workouts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
