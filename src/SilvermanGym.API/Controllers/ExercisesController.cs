@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using SilvermanGym.Application.Contracts;
+using SilvermanGym.Application.Contracts.Commands;
 using SilvermanGym.Application.Contracts.DTOs;
 using SilvermanGym.Application.Contracts.Queries;
 
@@ -51,6 +52,17 @@ namespace SilvermanGym.API.Controllers
                 return Ok(workoutExercises);
             }
             
+        }
+
+        [HttpPost]
+        [Produces("application/json")]
+        [ProducesResponseType(typeof(ExerciseDto), StatusCodes.Status201Created)]
+        [ProducesResponseType(typeof(ValidationErrorDetails), StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<ExerciseDto>> CreateUser(CreateExerciseCommand request, CancellationToken ct)
+        {
+            var newExercise = await this.Mediator.Send(request, ct);
+        
+            return CreatedAtAction(nameof(GetExerciseById), new { id = newExercise.Id }, newExercise);
         }
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using SilvermanGym.Application.Contracts;
+using SilvermanGym.Application.Contracts.Commands;
 using SilvermanGym.Application.Contracts.DTOs;
 using SilvermanGym.Application.Contracts.Queries;
 
@@ -36,6 +37,17 @@ namespace SilvermanGym.API.Controllers
                 return NotFound();
 
             return Ok(user);
+        }
+
+        [HttpPost]
+        [Produces("application/json")]
+        [ProducesResponseType(typeof(UserDto), StatusCodes.Status201Created)]
+        [ProducesResponseType(typeof(ValidationErrorDetails), StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<UserDto>> CreateUser(CreateUserCommand request, CancellationToken ct)
+        {
+            var newUser = await this.Mediator.Send(request, ct);
+        
+            return CreatedAtAction(nameof(GetUserById), new { id = newUser.id }, newUser);
         }
     }
 }

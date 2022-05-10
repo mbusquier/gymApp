@@ -24,6 +24,13 @@ namespace SilvermanGym.Infraestructure.Persistence.Repositories;
                 .AsNoTracking()
                 .AnyAsync(usr => usr.Id == Id, ct);
         }
+
+        public Task<bool> ChecUsername(string Username, CancellationToken ct)
+        {
+            return  context.Users
+                .AsNoTracking()
+                .AnyAsync(usr => usr.Username == Username, ct);
+        }
         public Task<List<User>> GetAllUsers(CancellationToken ct)
         {
             return context.Users
@@ -36,5 +43,11 @@ namespace SilvermanGym.Infraestructure.Persistence.Repositories;
             return context.Users
                 .AsNoTracking()
                 .SingleOrDefaultAsync(usr => usr.Id == Id, ct);
+        }
+
+        public async Task CreateUser(User newUser, CancellationToken ct)
+        {
+            await context.Users.AddAsync(newUser, ct);
+            await context.SaveChangesAsync(ct);
         }
     }

@@ -13,4 +13,8 @@ namespace SilvermanGym.Application.Interfaces;
         public Task<Exercise> GetExerciseById(Guid id, CancellationToken ct);
 
         public Task<bool> CheckIfExerciseExists(Guid Id, CancellationToken ct);
+
+        public Task CreateExercise(Exercise newExercise, CancellationToken ct);
+
+        public Task<bool> CheckExerciseName(string Name, CancellationToken ct);
     }

@@ -39,4 +39,16 @@ namespace SilvermanGym.Infraestructure.Persistence.Repositories;
                     .SingleOrDefaultAsync(wkt => wkt.Id == id, ct);
         }
 
+        public async Task CreateExercise(Exercise newExercise, CancellationToken ct)
+        {
+            await context.Exercises.AddAsync(newExercise, ct);
+            await context.SaveChangesAsync(ct);
+        }
+
+        public Task<bool> CheckExerciseName(string Name, CancellationToken ct)
+        {
+            return  context.Exercises
+                .AsNoTracking()
+                .AnyAsync(exc => exc.Name == Name, ct);
+        }
 }

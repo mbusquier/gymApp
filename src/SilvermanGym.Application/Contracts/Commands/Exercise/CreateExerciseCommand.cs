@@ -5,11 +5,12 @@ using System.Threading.Tasks;
 using FluentValidation;
 using SilvermanGym.Domain.Enum;
 using MediatR;
+using SilvermanGym.Application.Contracts.DTOs;
 
 namespace SilvermanGym.Application.Contracts.Commands;
 
     public record CreateExerciseCommand(string Name, ExerciseEquipment ExerciseEquipment, 
-    ExerciseType ExerciseType, string Description);
+    ExerciseType ExerciseType, string Description) : IRequest<ExerciseDto>;
 
     public class CreateExerciseCommandValidator : AbstractValidator<CreateExerciseCommand>
     {

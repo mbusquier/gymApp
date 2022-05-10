@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FluentValidation;
+using MediatR;
+using SilvermanGym.Application.Contracts.DTOs;
 
 namespace SilvermanGym.Application.Contracts.Commands;
 
-    public record CreateUserCommand(string Username, int Age, float Height, float Weight);
+    public record CreateUserCommand(string Username, int Age, float Height, float Weight) : IRequest<UserDto>;
     public class CreateUserCommandValidator : AbstractValidator<CreateUserCommand>
     {
         public CreateUserCommandValidator()
