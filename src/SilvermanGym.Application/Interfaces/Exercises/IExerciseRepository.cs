@@ -9,4 +9,8 @@ namespace SilvermanGym.Application.Interfaces;
     public interface IExerciseRepository
     {
         public Task<List<Exercise>> GetAllExercises(CancellationToken ct);
+
+        public Task<Exercise> GetExerciseById(Guid id, CancellationToken ct);
+
+        public Task<bool> CheckIfExerciseExists(Guid Id, CancellationToken ct);
     }

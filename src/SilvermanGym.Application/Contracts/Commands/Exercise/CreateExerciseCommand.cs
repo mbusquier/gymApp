@@ -8,7 +8,7 @@ using MediatR;
 
 namespace SilvermanGym.Application.Contracts.Commands;
 
-    public record CreateExerciseCommand(Guid Id, string Name, ExerciseEquipment ExerciseEquipment, 
+    public record CreateExerciseCommand(string Name, ExerciseEquipment ExerciseEquipment, 
     ExerciseType ExerciseType, string Description);
 
     public class CreateExerciseCommandValidator : AbstractValidator<CreateExerciseCommand>

@@ -32,5 +32,12 @@ namespace SilvermanGym.Infraestructure.Persistence.Repositories
                 .AsNoTracking()
                 .SingleOrDefaultAsync(wkt => wkt.Id == Id, ct);
         }
+
+        public Task<bool> CheckIfWorkoutExists(Guid Id, CancellationToken ct)
+        {
+            return  context.Workouts
+                .AsNoTracking()
+                .AnyAsync(wrk => wrk.Id == Id, ct);
+        }
     }
 }

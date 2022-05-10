@@ -6,7 +6,7 @@ using FluentValidation;
 
 namespace SilvermanGym.Application.Contracts.Commands;
 
-    public record CreateUserCommand(Guid id, string Username, int Age, float Height, float Weight);
+    public record CreateUserCommand(string Username, int Age, float Height, float Weight);
     public class CreateUserCommandValidator : AbstractValidator<CreateUserCommand>
     {
         public CreateUserCommandValidator()

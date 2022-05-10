@@ -18,10 +18,25 @@ namespace SilvermanGym.Infraestructure.Persistence.Repositories;
             this.context = context;
         }
 
-    public Task<List<Exercise>> GetAllExercises(CancellationToken ct)
-    {
-        return context.Exercises
-            .AsNoTracking()
-            .ToListAsync(ct);
-    }
+        public Task<List<Exercise>> GetAllExercises(CancellationToken ct)
+        {
+            return context.Exercises
+                .AsNoTracking()
+                .ToListAsync(ct);
+        }
+
+        public Task<bool> CheckIfExerciseExists(Guid Id, CancellationToken ct)
+        {
+            return  context.Exercises
+                .AsNoTracking()
+                .AnyAsync(ex => ex.Id == Id, ct);
+        }
+
+        public Task<Exercise> GetExerciseById(Guid id, CancellationToken ct)
+        {
+            return context.Exercises
+                    .AsNoTracking()
+                    .SingleOrDefaultAsync(wkt => wkt.Id == id, ct);
+        }
+
 }

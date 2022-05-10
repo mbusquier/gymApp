@@ -6,7 +6,7 @@ using FluentValidation;
 
 namespace SilvermanGym.Application.Contracts.Commands;
 
-    public record CreateWorkoutCommand(Guid id, string Name, DateTime WorkoutDate);
+    public record CreateWorkoutCommand(string Name, DateTime WorkoutDate);
     public class CreateWorkoutCommandValidator : AbstractValidator<CreateWorkoutCommand>
     {
         public CreateWorkoutCommandValidator()

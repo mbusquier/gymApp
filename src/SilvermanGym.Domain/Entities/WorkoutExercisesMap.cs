@@ -8,6 +8,7 @@ namespace SilvermanGym.Domain.Entities
 {
     public class WorkoutExercisesMap
     {
+        public Guid Id { get; set; }
         public Guid ExerciseId { get; set; }
         public Guid WorkoutId { get; set; }
         public float Weight { get; set; }
@@ -18,8 +19,9 @@ namespace SilvermanGym.Domain.Entities
         public Workout Workout { get; set; }
         public Exercise Exercise { get; set; }
 
-        public WorkoutExercisesMap(Guid ExerciseId, Guid WorkoutId, int Reps, float Weight)
+        public WorkoutExercisesMap(Guid Id, Guid WorkoutId, Guid ExerciseId, int Reps, float Weight)
         {
+            this.Id = Guard.Against.NullOrEmpty(Id,nameof(Id));
             this.ExerciseId = Guard.Against.NullOrEmpty(ExerciseId,nameof(ExerciseId));
             this.WorkoutId = Guard.Against.NullOrEmpty(WorkoutId,nameof(WorkoutId));
             this.Reps = Guard.Against.NegativeOrZero(Reps,nameof(Reps));

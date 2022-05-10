@@ -17,7 +17,7 @@ namespace SilvermanGym.Domain.Entities
         //Navigational Properties
         public User User { get; set; }
 
-        public ICollection<Exercise> Exercises { get; set; }
+        public ICollection<WorkoutExercisesMap> Exercises { get; set; }
         
         public Workout(Guid Id, string Name, DateTime WorkoutDate, Guid UserId)
         {
