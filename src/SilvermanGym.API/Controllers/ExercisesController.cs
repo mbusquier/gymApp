@@ -10,20 +10,7 @@ using SilvermanGym.Application.Contracts.Queries;
 namespace SilvermanGym.API.Controllers
 {
     public class ExercisesController : ApiController
-    { 
-        [HttpGet]
-        [Produces("application/json")]
-        [ProducesResponseType(typeof(IEnumerable<ExerciseDto>), StatusCodes.Status200OK)]
-        public async Task<ActionResult<IEnumerable<ExerciseDto>>> GetAllExercises(CancellationToken ct)
-        {
-            var exercises = await this.Mediator.Send(new GetAllExercisesQuery(), ct);
-            
-            if(exercises is null)
-                return NotFound();
-            
-            return Ok(exercises);
-        }
-
+    {
         [HttpGet("{id:guid}")]
         [Produces("application/json")]
         [ProducesResponseType(typeof(ExerciseDto), StatusCodes.Status200OK)]
@@ -36,6 +23,34 @@ namespace SilvermanGym.API.Controllers
                 return NotFound();
 
             return Ok(exer);
+        }
+
+        
+        [HttpGet]
+        [Produces("application/json")]
+        [ProducesResponseType(typeof(IEnumerable<WorkoutExerciseDto>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(GenericErrorDetails), StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<IEnumerable<WorkoutExerciseDto>>> GetExercises([FromQuery] Guid WrkId,CancellationToken ct)
+        {
+            if(WrkId == Guid.Empty)
+            {
+                var exercises = await this.Mediator.Send(new GetAllExercisesQuery(), ct);
+            
+                if(exercises is null)
+                    return NotFound();
+                
+                return Ok(exercises);
+            }
+            else
+            {
+                var workoutExercises = await this.Mediator.Send(new GetExercisesByWorkoutIdQuery(WrkId), ct);
+                
+                if(workoutExercises is null)
+                    return NotFound();
+
+                return Ok(workoutExercises);
+            }
+            
         }
     }
 }

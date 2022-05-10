@@ -24,6 +24,7 @@ namespace SilvermanGym.Infraestructure
             services.AddScoped<IExerciseRepository, ExerciseRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IWorkoutRepository, WorkoutRepository>();
+            services.AddScoped<IWorkoutExerciseRepository, WorkoutExerciseRepository>();
 
             return services;
         }
