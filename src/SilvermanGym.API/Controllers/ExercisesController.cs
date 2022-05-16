@@ -30,6 +30,7 @@ namespace SilvermanGym.API.Controllers
         [HttpGet]
         [Produces("application/json")]
         [ProducesResponseType(typeof(IEnumerable<WorkoutExerciseDto>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(IEnumerable<ExerciseDto>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(GenericErrorDetails), StatusCodes.Status404NotFound)]
         public async Task<ActionResult<IEnumerable<WorkoutExerciseDto>>> GetExercises([FromQuery] Guid WrkId,CancellationToken ct)
         {
@@ -58,7 +59,7 @@ namespace SilvermanGym.API.Controllers
         [Produces("application/json")]
         [ProducesResponseType(typeof(ExerciseDto), StatusCodes.Status201Created)]
         [ProducesResponseType(typeof(ValidationErrorDetails), StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<ExerciseDto>> CreateUser(CreateExerciseCommand request, CancellationToken ct)
+        public async Task<ActionResult<ExerciseDto>> CreateExercise(CreateExerciseCommand request, CancellationToken ct)
         {
             var newExercise = await this.Mediator.Send(request, ct);
         

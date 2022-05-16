@@ -13,7 +13,6 @@ namespace SilvermanGym.Application.Handlers.Commands
 {
     public class CreateWorkoutCommandHandler : IRequestHandler<CreateWorkoutCommand, WorkoutDto>
     {
-
         public readonly IWorkoutRepository _workoutRepository;
         public readonly IUserRepository _userRepository;
 

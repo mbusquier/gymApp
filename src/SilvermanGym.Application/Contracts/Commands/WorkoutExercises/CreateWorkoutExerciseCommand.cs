@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FluentValidation;
+using MediatR;
+using SilvermanGym.Application.Contracts.DTOs;
 
 namespace SilvermanGym.Application.Contracts.Commands
 {
-    public record CreateWorkoutExerciseCommand(Guid WorkId, Guid ExId, int Reps, float Weight);
+    public record CreateWorkoutExerciseCommand(Guid WorkId, Guid ExId, int Reps, float Weight) : IRequest<WorkoutExerciseDto>;
     public class CreateWorkoutExerciseCommandValidator : AbstractValidator<CreateWorkoutExerciseCommand>
     {
         public CreateWorkoutExerciseCommandValidator()

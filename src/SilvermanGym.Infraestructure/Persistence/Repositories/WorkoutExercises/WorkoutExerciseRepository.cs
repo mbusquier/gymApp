@@ -26,5 +26,10 @@ namespace SilvermanGym.Infraestructure.Persistence.Repositories
                 .Include(wrk => wrk.Exercise)
                 .ToListAsync(ct);
         }
+        public async Task CreateWorkoutEx(WorkoutExercisesMap newWorkoutEx, CancellationToken ct)
+        {
+            await context.WorkoutExercises.AddAsync(newWorkoutEx, ct);
+            await context.SaveChangesAsync(ct);
+        }
     }
 }

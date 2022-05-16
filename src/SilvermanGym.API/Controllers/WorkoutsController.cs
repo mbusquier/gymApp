@@ -49,5 +49,15 @@ namespace SilvermanGym.API.Controllers
 
             return CreatedAtAction(nameof(GetWorkoutById), new { id = newWorkout.id }, newWorkout);
         }
+
+        [HttpPost("{Exercise}")]
+        [Produces("application/json")]
+        [ProducesResponseType(typeof(WorkoutExerciseDto), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(GenericErrorDetails), StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<WorkoutExerciseDto>> AddExerciseToWorkout(CreateWorkoutExerciseCommand request, CancellationToken ct)
+        {
+            var newWorkoutExercise = await this.Mediator.Send(request,ct);
+           return Ok(newWorkoutExercise);
+        }
     }
 }
