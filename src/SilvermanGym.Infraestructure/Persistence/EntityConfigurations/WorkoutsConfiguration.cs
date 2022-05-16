@@ -22,6 +22,11 @@ namespace SilvermanGym.Infraestructure.Persistence.EntityConfigurations
 
             builder.Property(work => work.WorkoutDate)
                 .IsRequired();
+
+            builder.HasOne(wrk => wrk.User)
+                .WithMany(usr => usr.Workouts)
+                .HasForeignKey(wrk => wrk.UserId)
+                .IsRequired();
         }
     }
 }
