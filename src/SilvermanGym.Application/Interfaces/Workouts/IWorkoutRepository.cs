@@ -12,6 +12,8 @@ namespace SilvermanGym.Application.Interfaces
         public Task<List<Workout>> GetAllUserWorkouts(Guid Id, CancellationToken ct);
 
         public Task<bool> CheckIfWorkoutExists(Guid Id, CancellationToken ct);
+
+        public Task CreateWorkout(Workout newWorkout, CancellationToken ct);
         
     }
 }

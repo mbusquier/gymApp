@@ -39,5 +39,11 @@ namespace SilvermanGym.Infraestructure.Persistence.Repositories
                 .AsNoTracking()
                 .AnyAsync(wrk => wrk.Id == Id, ct);
         }
+
+        public async Task CreateWorkout(Workout newWorkout, CancellationToken ct)
+        {
+            await context.Workouts.AddAsync(newWorkout, ct);
+            await context.SaveChangesAsync(ct);
+        }
     }
 }

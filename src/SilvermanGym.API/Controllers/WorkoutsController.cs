@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using SilvermanGym.Application.Contracts;
+using SilvermanGym.Application.Contracts.Commands;
 using SilvermanGym.Application.Contracts.DTOs;
 using SilvermanGym.Application.Contracts.Queries;
 
@@ -36,6 +37,17 @@ namespace SilvermanGym.API.Controllers
                 return NotFound();
 
             return Ok(workout);
+        }
+
+        [HttpPost]
+        [Produces("application/json")]
+        [ProducesResponseType(typeof(WorkoutDto), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(GenericErrorDetails), StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<WorkoutDto>> SaveUserWorkout(CreateWorkoutCommand request,CancellationToken ct)
+        {
+            var newWorkout = await this.Mediator.Send(request, ct);
+
+            return CreatedAtAction(nameof(GetWorkoutById), new { id = newWorkout.id }, newWorkout);
         }
     }
 }
