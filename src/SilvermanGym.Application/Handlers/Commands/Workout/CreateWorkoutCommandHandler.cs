@@ -47,7 +47,7 @@ namespace SilvermanGym.Application.Handlers.Commands
             }
             else
             {
-                 var failure = new ValidationFailure
+                var failure = new ValidationFailure
                 (
                     nameof(request.UserId),
                     $"The user with userId = {request.UserId} does not exits"
